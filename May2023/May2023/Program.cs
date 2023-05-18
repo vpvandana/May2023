@@ -36,6 +36,27 @@ public class Program
         {
             Console.WriteLine("User not Logged in!");
         }
+        // Navigate to Administration
+        IWebElement Administrationtab = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+        Administrationtab.Click();
+
+        //Click on Time and Materials module
+        IWebElement Tandmbtn = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul[1]/li[5]/ul/li[3]/a"));
+        Tandmbtn.Click();
+
+        //Click on create new btton
+        IWebElement Createnewbtn = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
+        Createnewbtn.Click();   
+
+        //Click Time from Typecode dropdown list
+
+        //input code
+
+        //input description
+
+        //input price
+
+        //check if new record has been created in the table
 
 
 
