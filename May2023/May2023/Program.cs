@@ -39,6 +39,7 @@ public class Program
         // Navigate to Administration
         IWebElement Administrationtab = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
         Administrationtab.Click();
+        Thread.Sleep(1000);
 
         //Click on Time and Materials module
         IWebElement Tandmbtn = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul[1]/li[5]/ul/li[3]/a"));
@@ -91,7 +92,87 @@ public class Program
 
 
         }
-    }
+        Thread.Sleep(2000);
 
+        //To delete a row in the table
+
+        //Go to First page
+
+        IWebElement firstpagebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[1]/span"));
+        firstpagebtn.Click();
+
+        //click on delete button
+
+        IWebElement deletebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[5]/a[2]"));
+        deletebtn.Click();
+
+        //click on OK button in the popup menu
+        Thread.Sleep(3000);
+        IAlert alert = driver.SwitchTo().Alert();
+        // String alertMessage = driver.SwitchTo().Alert().getText();
+        Thread.Sleep(2000);
+        alert.Accept();
+        Console.WriteLine("First record deleted !");
+        Thread.Sleep(2000);
+        /* //check if record is deleted from table
+         IWebElement firstrowrec = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
+         IWebElement secondrowrecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[2]/td[1]"));
+         if (firstrowrec.Text == secondrowrecord.Text)
+         {
+             Console.WriteLine("First record deleted !");
+
+         }
+
+         else
+
+         {
+             Console.WriteLine("First record not deleted!");
+         }*/
+
+        //To edit a row in the table
+
+        //Click on edit button
+        IWebElement Editbtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[5]/a[1]"));
+        Thread.Sleep(2000);
+        Editbtn.Click();
+        Thread.Sleep(3000);
+
+        //Edit Code
+        IWebElement codetxtboxedit = driver.FindElement(By.XPath("//*[@id=\"Code\"]"));
+        codetxtboxedit.Clear();
+        Thread.Sleep(1000);
+        codetxtboxedit.SendKeys("June2023");
+        Thread.Sleep(3000);
+
+        //Edit Description
+        IWebElement descriptiontxtboxedit = driver.FindElement(By.XPath("//*[@id=\"Description\"]"));
+        descriptiontxtboxedit.Clear();  
+        descriptiontxtboxedit.SendKeys("June2023");
+        Thread.Sleep(3000);
+
+        //Edit Price
+        IWebElement pricetxtboxedit = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+      //pricetxtboxedit.Clear();
+        pricetxtboxedit.SendKeys("30");
+        Thread.Sleep(2000);
+
+        //Click on Save button
+        IWebElement Savebtn = driver.FindElement(By.Id("SaveButton"));
+        Savebtn.Click();
+        Thread.Sleep(1000);
+        Console.WriteLine("Record edited successfully");
+
+        /*//Check if first row edited
+        IWebElement firstrowcode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
+        IWebElement firstrowcodeedit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
+        if (firstrowcode.Text != firstrowcodeedit.Text)
+        {
+            Console.WriteLine("Code edited successfully");
+        }
+        else
+        {
+            Console.WriteLine("Code not edited !");
+        }*/
+    }
 
     }
