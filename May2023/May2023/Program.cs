@@ -75,10 +75,10 @@ public class Program
 
         //check if new record has been created in the table
         //Navigate to last page
-
         IWebElement lastpagebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
         lastpagebtn.Click();
         Thread.Sleep(2000);
+
         //Check if record present
         IWebElement lastrowrec = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
@@ -96,43 +96,46 @@ public class Program
 
         //To delete a row in the table
 
-        //Go to First page
+       /* //Go to First page
 
         IWebElement firstpagebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[1]/span"));
-        firstpagebtn.Click();
+        firstpagebtn.Click(); */
 
         //click on delete button
 
-        IWebElement deletebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[5]/a[2]"));
+        IWebElement deletebtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
         deletebtn.Click();
 
         //click on OK button in the popup menu
+
         Thread.Sleep(3000);
         IAlert alert = driver.SwitchTo().Alert();
+
         // String alertMessage = driver.SwitchTo().Alert().getText();
         Thread.Sleep(2000);
         alert.Accept();
-        Console.WriteLine("First record deleted !");
+     // Console.WriteLine("First record deleted !");
         Thread.Sleep(2000);
-        /* //check if record is deleted from table
-         IWebElement firstrowrec = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
-         IWebElement secondrowrecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[2]/td[1]"));
-         if (firstrowrec.Text == secondrowrecord.Text)
+
+        //check if record is deleted from table
+        IWebElement lastrowrecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+         
+
+         if (lastrowrecord.Text != "May 2023")
          {
-             Console.WriteLine("First record deleted !");
+             Console.WriteLine("Last record deleted !");
 
          }
-
          else
 
          {
-             Console.WriteLine("First record not deleted!");
-         }*/
+             Console.WriteLine(" Last record not deleted!");
+         }
 
         //To edit a row in the table
 
         //Click on edit button
-        IWebElement Editbtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[5]/a[1]"));
+        IWebElement Editbtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
         Thread.Sleep(2000);
         Editbtn.Click();
         Thread.Sleep(3000);
@@ -160,19 +163,26 @@ public class Program
         IWebElement Savebtn = driver.FindElement(By.Id("SaveButton"));
         Savebtn.Click();
         Thread.Sleep(1000);
-        Console.WriteLine("Record edited successfully");
+        //Console.WriteLine("Record edited successfully");
 
-        /*//Check if first row edited
-        IWebElement firstrowcode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
-        IWebElement firstrowcodeedit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[1]"));
-        if (firstrowcode.Text != firstrowcodeedit.Text)
+        //Check if last row edited
+
+        //Navigate to last page button
+        IWebElement lastpgbtn = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]"));
+        lastpgbtn.Click();  
+        Thread.Sleep(2000); 
+
+        // Check if last code not the same
+        IWebElement lastrowrecord1 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+        
+        if (lastrowrecord1.Text == "June2023")
         {
             Console.WriteLine("Code edited successfully");
         }
         else
         {
             Console.WriteLine("Code not edited !");
-        }*/
+        }
     }
 
     }
